@@ -1,0 +1,46 @@
+﻿@using FerranMotaAnimalesMVC.Models
+@model Animal
+
+@{
+    ViewBag.Title = "FormularioAnimales";
+}
+
+<h2>FormularioAnimales</h2>
+
+@using (Html.BeginForm("FormularioAnimales", "Animales", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(m => m.NombreAnimal)
+        @Html.TextBoxFor(m => m.NombreAnimal, new { type = "text", required = "required" })
+        @Html.ValidationMessageFor(m => m.NombreAnimal)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Raza)
+        @Html.TextBoxFor(m => m.Raza, new { type = "text" })
+        @Html.ValidationMessageFor(m => m.Raza)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.RIdTipoAnimal)
+        @Html.DropDownListFor(m => m.RIdTipoAnimal, (SelectList)ViewBag.ListTipoAnimal, "Seleccione un tipo de animal", new { required = "required" })
+        @Html.ValidationMessageFor(m => m.RIdTipoAnimal)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.FechaNacimiento)
+        @Html.TextBoxFor(m => m.FechaNacimiento, new { type = "date" })
+        @Html.ValidationMessageFor(m => m.FechaNacimiento)
+    </div>
+
+    <div>
+        <button type="submit">Crear Animal</button>
+    </div>
+
+    if (ViewBag.Error != null)
+    {
+        <p style="color:red;">@ViewBag.Error</p>
+    }
+}

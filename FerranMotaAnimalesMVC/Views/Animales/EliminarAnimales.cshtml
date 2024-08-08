@@ -1,0 +1,27 @@
+﻿@using FerranMotaAnimalesMVC.Models
+@model Animal
+@{
+    ViewBag.Title = "EliminarAnimales";
+}
+
+<h2>EliminarAnimales</h2>
+
+@using (Html.BeginForm("EliminarAnimales", "Animales", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.LabelFor(m => m.IdAnimal)
+        @Html.DropDownListFor(m => m.IdAnimal, (SelectList)ViewBag.ListAnimal, "Seleccione un tipo de animal", new { required = "required" })
+        @Html.ValidationMessageFor(m => m.IdAnimal)
+    </div>
+
+    <div>
+        <button type="submit">Eliminar Animal</button>
+    </div>
+
+    if (ViewBag.Error != null)
+    {
+        <p style="color:red;">@ViewBag.Error</p>
+    }
+}

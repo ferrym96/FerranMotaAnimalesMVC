@@ -1,0 +1,20 @@
+﻿@using FerranMotaAnimalesMVC.Models
+@model List<Animal>
+@{
+    ViewBag.Title = "IndexAnimales";
+}
+
+<h2>IndexAnimales</h2>
+
+<ul>
+    @foreach (Animal animal in Model)
+    {
+        <li>Id: @animal.IdAnimal Nombre: @animal.NombreAnimal</li>
+    }
+</ul>
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+
+}
